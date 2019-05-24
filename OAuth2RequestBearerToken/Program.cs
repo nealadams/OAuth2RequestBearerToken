@@ -26,12 +26,14 @@ namespace OAuth2RequestBearerToken
         {
             BearerTokenClient bearerTokenClient = new BearerTokenClient();
             var result = await bearerTokenClient.GetBearerToken(_oAuth2Config);
-            Console.WriteLine("Bearer Token:" + Environment.NewLine + result.access_token);
+            Console.WriteLine("Bearer Token: ");
+            Console.Write(result.access_token);
 
             var now = DateTime.Now;
             var expires = now.AddSeconds(Convert.ToInt64(result.expires_in));
             
-            Console.WriteLine(Environment.NewLine + "Expires:\n" + expires);
+            Console.WriteLine(Environment.NewLine + "Expires:" + Environment.NewLine + expires);
+            Clipboard.Clipboard.SetText(result.access_token);
         }
     }
 }
