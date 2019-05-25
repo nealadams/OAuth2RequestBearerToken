@@ -26,12 +26,14 @@ namespace OAuth2RequestBearerToken
 
             HttpContent content = new FormUrlEncodedContent(headers);
             CancellationToken cancellationToken = new CancellationToken();
-            
-            HttpRequestMessage requestMessage = new HttpRequestMessage();
-            requestMessage.Content = content;
-            requestMessage.Method = HttpMethod.Post;
-            requestMessage.RequestUri = new Uri(config.url);
-            
+
+            HttpRequestMessage requestMessage = new HttpRequestMessage
+            {
+                Content = content,
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(config.url)
+            };
+
             var response = _httpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
             var stream = await response.Result.Content.ReadAsStreamAsync();
