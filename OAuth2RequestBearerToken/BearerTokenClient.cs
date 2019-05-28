@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace OAuth2RequestBearerToken
         public async Task<OAuth2TokenResponse> GetBearerToken(OAuth2Config config)
         {
             _httpClient = new HttpClient();
+
             IEnumerable<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("grant_type", "client_credentials"),
@@ -25,6 +27,7 @@ namespace OAuth2RequestBearerToken
             };
 
             HttpContent content = new FormUrlEncodedContent(headers);
+            
             CancellationToken cancellationToken = new CancellationToken();
 
             HttpRequestMessage requestMessage = new HttpRequestMessage
@@ -68,6 +71,22 @@ namespace OAuth2RequestBearerToken
                     content = await streamReader.ReadToEndAsync();
 
             return content;
+        }
+
+        private static HttpClientHandler GetHttpClientHandlerWithProxy(string proxyUrl)
+        {
+            WebProxy webProxy = new WebProxy()
+            {
+                Address = new Uri(proxyUrl),
+                BypassProxyOnLocal = true
+            };
+            
+            HttpClientHandler httpClientHandler = new HttpClientHandler()
+            {
+                Proxy = webProxy
+            };
+
+            return httpClientHandler;
         }
     }
 }

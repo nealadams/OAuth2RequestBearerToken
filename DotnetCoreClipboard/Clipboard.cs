@@ -1,14 +1,14 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace OAuth2RequestBearerToken.Clipboard
+namespace DotnetCoreClipboard
 {
-    public static class Clipboard
+    public class Clipboard
     {
-        static Action<string> setAction = CreateSet();
-        static Func<string> getFunc = CreateGet();
+        private Action<string> setAction => CreateSet();
+        private Func<string> getFunc => CreateGet();
 
-        public static void SetText(string text)
+        public void SetText(string text)
         {
             if (text == null)
             {
@@ -18,12 +18,12 @@ namespace OAuth2RequestBearerToken.Clipboard
             setAction(text);
         }
 
-        public static string GetText()
+        public string GetText()
         {
             return getFunc();
         }
 
-        static Action<string> CreateSet()
+        private Action<string> CreateSet()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -43,7 +43,7 @@ namespace OAuth2RequestBearerToken.Clipboard
             return s => throw new NotSupportedException();
         }
 
-        static Func<string> CreateGet()
+        private Func<string> CreateGet()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
