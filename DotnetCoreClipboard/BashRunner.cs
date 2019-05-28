@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace OAuth2RequestBearerToken.Clipboard
+namespace DotnetCoreClipboard
 {
     static class BashRunner
     {
@@ -20,7 +20,7 @@ namespace OAuth2RequestBearerToken.Clipboard
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
-                    CreateNoWindow = false,
+                    CreateNoWindow = false
                 }
             })
             {

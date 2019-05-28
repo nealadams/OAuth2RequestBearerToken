@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
-namespace OAuth2RequestBearerToken.Clipboard
+namespace DotnetCoreClipboard
 {
     static class WindowsClipboard
     {

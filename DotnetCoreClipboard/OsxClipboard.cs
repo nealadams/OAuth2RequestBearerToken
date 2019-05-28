@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace OAuth2RequestBearerToken.Clipboard
+namespace DotnetCoreClipboard
 {
     static class OsxClipboard
     {

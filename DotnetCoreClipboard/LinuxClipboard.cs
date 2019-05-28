@@ -1,9 +1,6 @@
-using System;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
 
-namespace OAuth2RequestBearerToken.Clipboard
+namespace DotnetCoreClipboard
 {
     static class LinuxClipboard
     {
