@@ -3,12 +3,12 @@ using System.Runtime.InteropServices;
 
 namespace DotnetCoreClipboard
 {
-    public class Clipboard
+    public static class Clipboard
     {
-        private Action<string> setAction => CreateSet();
-        private Func<string> getFunc => CreateGet();
+        private static Action<string> setAction = CreateSet();
+        private static Func<string> getFunc = CreateGet();
 
-        public void SetText(string text)
+        public static void SetText(string text)
         {
             if (text == null)
             {
@@ -18,12 +18,12 @@ namespace DotnetCoreClipboard
             setAction(text);
         }
 
-        public string GetText()
+        public static string GetText()
         {
             return getFunc();
         }
 
-        private Action<string> CreateSet()
+        private static Action<string> CreateSet()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -43,7 +43,7 @@ namespace DotnetCoreClipboard
             return s => throw new NotSupportedException();
         }
 
-        private Func<string> CreateGet()
+        private static Func<string> CreateGet()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

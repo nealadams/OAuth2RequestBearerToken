@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-using DotnetCoreClipboard;
 
 namespace OAuth2RequestBearerToken
 {
@@ -33,8 +32,7 @@ namespace OAuth2RequestBearerToken
             var expires = DateTime.Now.AddSeconds(Convert.ToInt64(result.expires_in)).ToString();
             
             Console.WriteLine(Environment.NewLine + "Expires:" + Environment.NewLine + expires);
-            Clipboard clipboard = new Clipboard();
-            clipboard.SetText(result.access_token);
+            DotnetCoreClipboard.Clipboard.SetText(result.access_token);
         }
     }
 }
