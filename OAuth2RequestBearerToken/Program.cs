@@ -13,7 +13,7 @@ namespace OAuth2RequestBearerToken
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             _configuration = builder.Build();
             _configuration.GetSection("OAuth2Configuration").Bind(_oAuth2Config);
